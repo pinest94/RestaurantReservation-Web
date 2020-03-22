@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from './router'
+import axios from "axios"
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     allUsers:[
-      {id:1, userId:"doingnow94", name:"김한솔", userPassword:"wn13628747^^"},
-      {id:2, userId:"wn7877", name:"hansol kim", userPassword:"wn7877"}
+      {id:1, email:"doingnow94", name:"김한솔", password:"wn13628747^^"},
+      {id:2, email:"wn7877", name:"hansol kim", password:"wn7877"}
     ],
     isLogin: false,
     isLoginError: false,
@@ -39,27 +40,50 @@ export default new Vuex.Store({
   },
   actions: { // 비즈니스 로직
       // 로그인 시도
-      doLogin({state, commit}, loginObj) {        
+      doLogin({commit}, loginObj) {        
         // 전체 유저에서 해당 이메일로 유저를 찾는다.
-        let selectedUser = null
-        state.allUsers.forEach(user=> {
-            if(user.userId === loginObj.userId && user.userPassword === loginObj.userPassword)
-                selectedUser = user
+        axios.post("https://reqres.in/api/login", loginObj)
+        .then(res => {
+          
+          // 성공 시 토큰을 헤더에 포함시켜서 유저정보 요청
+          let config = {
+            headers: {
+              "accessToken":res.data.token
+            }
+          }
+
+          axios
+          .get("https://reqres.in/api/users/2", config)
+          .then(response => {
+            let userInfo = {
+              id: response.data.data.id,
+              first_name: response.data.data.first_name,
+              last_name: response.data.data.last_name,
+              avatar: response.data.data.avatar
+            }
+
+            commit("loginSuccess", userInfo)
+            router.push({ name : "home" })
+          })
+          .catch(error => {
+            alert('아이디와 비밀번호를 확인하세요.')
+            console.log(error)
+          })      
         })
-        if(selectedUser === null) { // 로그인 성공시
-          commit('loginError')          
-        } else { // 로그인 실패시
-          commit('loginSuccess', selectedUser)
-          router.push({name: "mypage"})
-        }
-        // 그 유저의 비밀번호와 입력된 비밀번호를 비교한다.
-        console.log(state.userId, state.userPassword);
+        .catch(err => {       
+          alert('아이디와 비밀번호를 확인하세요.')   
+          commit("loginError")
+          console.log(err)
+        })
       },
 
       // 로그아웃 시도
       doLogout({commit}) {
         commit("logout")
         router.push({ name : "home" })
+      },
+      getMemberInfo() {
+        
       }
   }
 })
