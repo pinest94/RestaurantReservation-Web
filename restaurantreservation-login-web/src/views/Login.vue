@@ -26,11 +26,11 @@
                 </v-toolbar>
                 <div class="pa-3">
                     <v-text-field
-                    v-model="email"
+                    v-model="userId"
                     label="아이디"                    
                 ></v-text-field>
                 <v-text-field
-                    v-model="password"
+                    v-model="userPassword"
                     type="password"
                     label="비밀번호"                    
                 ></v-text-field>
@@ -40,7 +40,7 @@
                 depressed
                 dark
                 color="#FFAB40"
-                @click="doLogin({email, password})"
+                @click="doLogin({userId, userPassword})"
                 >로그인</v-btn>
                 </div>
                 </v-card>                
@@ -55,8 +55,8 @@ import { mapState, mapActions } from "vuex"
 export default {
     data() {
         return {
-            email: null,
-            password: null,            
+            userId: null,
+            userPassword: null,            
         }
     },
     computed: {

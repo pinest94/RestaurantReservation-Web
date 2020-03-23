@@ -13,7 +13,7 @@ const rejectAuthUser = (to, from, next) => {
   }
 }
 
-const rejectUnauthUser = (to, from, next) => {
+const onlyAuthUser = (to, from, next) => {
   if(store.state.isLogin === false) {
     alert("로그인이 필요한 페이지입니다. ")
     next("/login")
@@ -40,7 +40,7 @@ export default new Router({
     {
       path: '/mypage',
       name: 'mypage',
-      beforeEnter: rejectUnauthUser,
+      beforeEnter: onlyAuthUser,
       component: () => import(/* webpackChunkName: "Mypage" */ './views/Mypage')
     },
     {
