@@ -9,11 +9,13 @@
            <h1>{{ restaurant.information }}</h1>
         </div>
         <br>
-        <div v-for="review in reviews" v-bind:key="review.id">
-           <h4 v-if="review.writer === null">guest</h4>
-           <h4 v-else>{{ review.writer }}</h4>
-           <h4>{{ review.score }}</h4>
-           <h4>{{ review.description }}</h4>
+        <div v-if="reviews" class="content">
+            <div v-for="review in reviews" v-bind:key="review.id">
+                <h4 v-if="review.writer === null">guest</h4>
+                <h4 v-else>{{ review.writer }}</h4>
+                <h4>{{ review.score }}</h4>
+                <h4>{{ review.description }}</h4>
+            </div>
         </div>
     </div>
 </template>
@@ -43,20 +45,20 @@ export default {
     },
     created () {
         this.getRestaurant()
+        
     },
     watch: {
         '$route': 'getRestaurant'
     },
     methods: {
         // 레스토랑 정보요청(restaurant detail)
-        getRestaurant() {            
+        getRestaurant() {          
             axios
             .get("http://localhost:9000/restaurants/"+this.$route.params.id)
             .then(response => {
                 this.loading = false
                 this.restaurant = response.data
                 this.reviews = response.data.reviews
-                console.log(this.$route.params.id)
                 console.log(response)                            
             })
             .catch(error => {

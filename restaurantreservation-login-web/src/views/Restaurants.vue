@@ -56,7 +56,7 @@ export default {
             })
         },
         gotoRestaurant(item) { // 레스토랑 세부정보로 이동
-            router.push({ name: "restaurants", params: {restaurantId : item.id}})
+            router.push({ name: "restaurantDetail", params: {id : item.id}})
         }
     }    
 }
