@@ -47,6 +47,11 @@ export default new Router({
       path: '/logout',
       name: 'logout',
       component: () => import(/* webpackChunkName: "Logout" */ './views/Logout')
+    },
+    {
+      path: '/restaurants',
+      name: 'restaurants',
+      component: () => import(/* webpackChunkName: "Restaurants" */ './views/Restaurants')
     }
   ]
 })
