@@ -1,12 +1,18 @@
 <template>
     <div>
         <div v-if="restaurants" class="content">
-            <v-data-table
+           <v-data-table     
                 :headers="headers"
                 :items="restaurants"
                 :loading="loading"
-            >
-            <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
+                @click:row="gotoRestaurant"
+                >
+                <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
+                <template v-slot="{items : item}">
+                    <td class="text-xs-right">{{ item.id }}</td>
+                    <td><a @click="gotoRestaurant(props.item)">{{ item.address }}</a></td>                
+                    <td class="text-xs-right">{{ item.address }}</td>                    
+                </template>
             </v-data-table>
         </div>
     </div>
@@ -14,6 +20,7 @@
 
 <script>
 import axios from "axios"
+import router from "../router"
 
 export default {
     data() {
@@ -47,6 +54,9 @@ export default {
                 alert('서버 오류')
                 console.log(error)
             })
+        },
+        gotoRestaurant(item) { // 레스토랑 세부정보로 이동
+            router.push({ name: "restaurants", params: {restaurantId : item.id}})
         }
     }    
 }
