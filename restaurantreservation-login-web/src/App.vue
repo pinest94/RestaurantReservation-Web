@@ -21,6 +21,14 @@
             <v-list-item-title>로그인</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item v-if="isLogin === false" router :to="{name: 'register'}" exact>
+          <v-list-item-action>
+            <v-icon>account_circle</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>회원가입</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item v-if="isLogin === true" router :to="{name: 'mypage'}" exact>
           <v-list-item-action>
             <v-icon>info</v-icon>
@@ -64,10 +72,10 @@
       </v-list>
     </v-menu>
         <v-btn text v-if="!isLogin" router :to="{name: 'login'}">로그인</v-btn>
-        <v-btn text v-if="!isLogin" router :to="{name: 'join'}">회원가입</v-btn>
+        <v-btn text v-if="!isLogin" router :to="{name: 'register'}">회원가입</v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-content class="theme">
       <router-view/>
     </v-content>
     <v-footer
@@ -93,3 +101,10 @@ import { mapState } from "vuex"
     }),
   }
 </script>
+
+<style>
+  .theme {
+    background-color:#F5F5F5;
+    display:inline-block;
+  }
+</style>

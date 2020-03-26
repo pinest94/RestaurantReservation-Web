@@ -38,9 +38,9 @@ export default new Router({
       component: () => import(/* webpackChunkName: "Login" */ './views/Login')
     },
     {
-      path: '/join',
-      name: 'join',
-      component: () => import(/* webpackChunkName: "Join" */ './views/Join')
+      path: '/register',
+      name: 'register',
+      component: () => import(/* webpackChunkName: "Register" */ './views/Register')
     },
     {
       path: '/mypage',
