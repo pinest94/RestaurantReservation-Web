@@ -15,18 +15,7 @@
         </div>
         <individual v-if="customerValue === 'Individual'"></individual>
         <owner v-if="customerValue === 'Owner'"></owner>
-    </div>
-    <div class="submit-btn">
-        <v-btn
-            :disabled="!valid"
-            color="success"
-            class="mr-6"            
-            @click="validate"
-            x-large
-            >
-            가입완료
-        </v-btn>
-    </div>
+    </div>    
 </div>
 </template>
 
@@ -41,10 +30,9 @@ export default {
     },
     data() {
         return {
-            customerValue: "Individual",
-            valid: true
+            customerValue: "Individual",            
         }
-    }
+    },    
 }
 </script>
 
