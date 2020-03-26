@@ -7,7 +7,7 @@
       <v-list dense>
         <v-list-item router :to="{name: 'home'}" exact>
           <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
+            <v-icon>home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Home</v-list-item-title>
@@ -15,7 +15,7 @@
         </v-list-item>
         <v-list-item v-if="isLogin === false" router :to="{name: 'login'}" exact>
           <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
+            <v-icon>lock</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>로그인</v-list-item-title>
@@ -23,7 +23,7 @@
         </v-list-item>
         <v-list-item v-if="isLogin === true" router :to="{name: 'mypage'}" exact>
           <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
+            <v-icon>info</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>마이페이지</v-list-item-title>
