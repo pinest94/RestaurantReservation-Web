@@ -38,6 +38,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "Login" */ './views/Login')
     },
     {
+      path: '/join',
+      name: 'join',
+      component: () => import(/* webpackChunkName: "Join" */ './views/Join')
+    },
+    {
       path: '/mypage',
       name: 'mypage',
       beforeEnter: onlyAuthUser,

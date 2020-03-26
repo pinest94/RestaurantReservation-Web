@@ -5,7 +5,7 @@
       app
     >
       <v-list dense>
-        <v-list-item router :to="{name: 'home'}">
+        <v-list-item router :to="{name: 'home'}" exact>
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -38,7 +38,7 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>레스토랑 예약관리 시스템</v-toolbar-title>
+      <v-toolbar-title>기다림 없이</v-toolbar-title>
       <v-spacer></v-spacer>        
         <v-menu offset-y v-if="isLogin">
       <template v-slot:activator="{ on }">
@@ -63,7 +63,8 @@
         </v-list-item>
       </v-list>
     </v-menu>
-        <v-btn text v-else router :to="{name: 'login'}">로그인</v-btn>
+        <v-btn text v-if="!isLogin" router :to="{name: 'login'}">로그인</v-btn>
+        <v-btn text v-if="!isLogin" router :to="{name: 'join'}">회원가입</v-btn>
     </v-app-bar>
 
     <v-content>
