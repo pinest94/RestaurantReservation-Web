@@ -48,7 +48,7 @@ export default new Vuex.Store({
           dispatch("getMemberInfo")
         })
         .catch(err => {
-          alert('아이디와 비밀번호를 확인하세요.')
+          alert('이메일 또는 비밀번호를 확인하세요.')
           // commit("loginError")
           console.log(err)
         })
@@ -82,7 +82,7 @@ export default new Vuex.Store({
             router.push({ name: "mypage" })
           })
           .catch(error => {
-            alert('아이디와 비밀번호를 확인하세요.')
+            alert('이메일 또는 비밀번호를 확인하세요.')
             console.log(error)
           })
       }

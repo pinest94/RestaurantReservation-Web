@@ -1,5 +1,10 @@
 module.exports = {
     devServer: {
-        proxy: 'http://localhost:8080/',
+        proxy: {
+            '/session': {
+                target: 'http://localhost:8081' // login server
+            },
+
+        }
     }
 }

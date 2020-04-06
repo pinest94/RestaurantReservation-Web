@@ -7,7 +7,7 @@
                     type="error"
                     :value="isLoginError"
                 >
-                    아이디 또는 비밀번호를 확인해주세요
+                    이메일 또는 비밀번호를 확인해주세요
                 </v-alert>
                 <v-alert 
                     class="mb-3"
@@ -26,11 +26,11 @@
                 </v-toolbar>
                 <div class="pa-3">
                     <v-text-field
-                    v-model="userId"
-                    label="아이디"                    
+                    v-model="email"
+                    label="이메일"                    
                 ></v-text-field>
                 <v-text-field
-                    v-model="userPassword"
+                    v-model="password"
                     type="password"
                     label="비밀번호"                    
                 ></v-text-field>
@@ -40,7 +40,7 @@
                 depressed
                 dark
                 color="#FFAB40"
-                @click="doLogin({userId, userPassword})"
+                @click="doLogin({email, password})"
                 >로그인</v-btn>
                 </div>
                 </v-card>                
@@ -55,8 +55,8 @@ import { mapState, mapActions } from "vuex"
 export default {
     data() {
         return {
-            userId: null,
-            userPassword: null,            
+            email: null,
+            password: null,            
         }
     },
     computed: {

@@ -54,7 +54,7 @@ export default {
         // 레스토랑 정보요청(restaurant detail)
         getRestaurant() {          
             axios
-            .get("http://localhost:9000/restaurants/"+this.$route.params.id)
+            .get("http://localhost:8082/restaurants/"+this.$route.params.id)
             .then(response => {
                 this.loading = false
                 this.restaurant = response.data

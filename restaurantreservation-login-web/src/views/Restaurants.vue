@@ -44,7 +44,7 @@ export default {
         // 레스토랑 정보요청(All)
         getRestaurants() {            
             axios
-            .get("http://localhost:9000/allRestaurants")
+            .get("http://localhost:8082/allRestaurants")
             .then(response => {
                 this.loading = false
                 this.restaurants = response.data
