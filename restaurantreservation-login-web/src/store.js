@@ -41,8 +41,7 @@ export default new Vuex.Store({
       // 전체 유저에서 해당 이메일로 유저를 찾는다.
       axios.post("http://localhost:9000/session", loginObj)
         .then(res => {
-          alert(res.status)
-          alert(res.data.accessToken)
+          alert("로그인에 성공했습니다.")
           // 성공 시 토큰을 헤더에 포함시켜서 유저정보 요청          
           localStorage.setItem("accessToken", res.data.accessToken)
           dispatch("getMemberInfo")
@@ -64,25 +63,31 @@ export default new Vuex.Store({
     getMemberInfo({ commit }) {
       let token = localStorage.getItem("accessToken")
       if (token != null) {
-        let config = {
-          headers: {
-            "accessToken": token
-          }
-        }
 
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        
+        const bodyParameters = {
+            key: "value"
+        };
         axios
-          .get("https://reqres.in/api/users/2", config)
-          .then(response => {
-            let userInfo = {
-              id: response.data.data.id,
-              name: response.data.data.name,
-            }
+          .post("http://localhost:9000/loginUser", bodyParameters, config)
+          .then(response => {            
+              let userInfo = {
+                name: response.data.name,
+                email: response.data.email,
+                phone: response.data.phone,
+                address: response.data.address,
+                level: response.data.level,
+                active: response.data.active,
+              }
 
-            commit("loginSuccess", userInfo)
-            router.push({ name: "mypage" })
-          })
+              commit("loginSuccess", userInfo)
+              router.push({ name: "mypage" })
+            })
           .catch(error => {
-            alert('이메일 또는 비밀번호를 확인하세요.')
+            alert('유저정보를 가져올 수 없습니다.')
             console.log(error)
           })
       }
