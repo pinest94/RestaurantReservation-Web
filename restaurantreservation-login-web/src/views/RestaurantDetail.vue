@@ -9,6 +9,10 @@
            <h1>{{ restaurant.information }}</h1>
         </div>
         <br>
+        <div class="reservation-Btn">
+            <reservationButton></reservationButton>
+        </div>
+        <br>
         <div v-if="reviews" class="content">
             <div v-for="review in reviews" v-bind:key="review.id">
                 <h4 v-if="review.writer === null">guest</h4>
@@ -16,14 +20,19 @@
                 <h4>{{ review.score }}</h4>
                 <h4>{{ review.description }}</h4>
             </div>
-        </div>
+        </div>        
     </div>
 </template>
 
 <script>
 import axios from "axios"
+import reservationButton from '../components/restaurants/ReservationButton'
 
 export default {
+    components: {
+        reservationButton,
+    },
+
     data() {
         return {
             loading: true,

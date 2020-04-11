@@ -63,5 +63,11 @@ export default new Router({
       name: 'restaurantDetail',
       component: () => import(/* webpackChunkName: "Restaurants" */ './views/RestaurantDetail')
     },
+    {
+      path: '/restaurants/:id/reservation',
+      name: 'reservation',
+      beforeEnter: onlyAuthUser,
+      component: () => import(/* webpackChunkName: "Reservation" */ './views/Reservation')
+    },
   ]
 })

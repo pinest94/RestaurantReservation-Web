@@ -13,6 +13,14 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item router :to="{name: 'restaurants'}" exact>
+          <v-list-item-action>
+            <v-icon>restaurant</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>음식점 목록</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item v-if="isLogin === false" router :to="{name: 'login'}" exact>
           <v-list-item-action>
             <v-icon>lock</v-icon>

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{name: 'restaurants'}">
+  <router-link :to="{name: 'reservation'}">
     <v-btn 
       block color="primary" 
       dark
